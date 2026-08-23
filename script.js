@@ -50,7 +50,115 @@ function toggleSetting(button) {
         button.style.color = "white";
     }
 }
+// ---------- HISTORY STORAGE FOR CHARTS ----------
 
+let historyLabels = [];
+let tempHistory = [];
+let humidityHistory = [];
+let rainHistory = [];
+
+let tempChart, humidityChart, rainChart;
+
+function initCharts() {
+    const tempCtx = document.getElementById("temperatureChart").getContext("2d");
+    tempChart = new Chart(tempCtx, {
+        type: "line",
+        data: {
+            labels: historyLabels,
+            datasets: [{
+                label: "Temperature (°C)",
+                data: tempHistory,
+                borderColor: "#ef4444",
+                tension: 0.3
+            }]
+        }
+    });
+
+    const humidityCtx = document.getElementById("humidityChart").getContext("2d");
+    humidityChart = new Chart(humidityCtx, {
+        type: "line",
+        data: {
+            labels: historyLabels,
+            datasets: [{
+                label: "Humidity (%)",
+                data: humidityHistory,
+                borderColor: "#3b82f6",
+                tension: 0.3
+            }]
+        }
+    });
+
+    const rainCtx = document.getElementById("rainChart").getContext("2d");
+    rainChart = new Chart(rainCtx, {
+        type: "line",
+        data: {
+            labels: historyLabels,
+            datasets: [{
+                label: "Rain (mm)",
+                data: rainHistory,
+                borderColor: "#0ea5e9",
+                tension: 0.3
+            }]
+        }
+    });
+}
+
+function updateCharts(data) {
+    const timeLabel = new Date().toLocaleTimeString();
+
+    historyLabels.push(timeLabel);
+    tempHistory.push(data.temperature);
+    humidityHistory.push(data.humidity);
+    rainHistory.push(data.rain);
+
+    // Keep only the last 10 readings
+    if (historyLabels.length > 10) {
+        historyLabels.shift();
+        tempHistory.shift();
+        humidityHistory.shift();
+        rainHistory.shift();
+    }
+
+    tempChart.update();
+    humidityChart.update();
+    rainChart.update();
+}
+
+
+// ---------- ALERT HISTORY ----------
+
+function addAlertRow(alertText, riskLabel) {
+    const tbody = document.getElementById("alertHistory");
+    const row = document.createElement("tr");
+
+    const timeCell = document.createElement("td");
+    timeCell.innerText = new Date().toLocaleTimeString();
+
+    const alertCell = document.createElement("td");
+    alertCell.innerText = alertText;
+
+    const riskCell = document.createElement("td");
+    riskCell.innerText = riskLabel;
+
+    const statusCell = document.createElement("td");
+    statusCell.innerText = "Active";
+
+    row.appendChild(timeCell);
+    row.appendChild(alertCell);
+    row.appendChild(riskCell);
+    row.appendChild(statusCell);
+
+    // Newest alert at the top
+    tbody.insertBefore(row, tbody.firstChild);
+
+    // Keep only the last 10 alerts
+    while (tbody.rows.length > 10) {
+        tbody.deleteRow(tbody.rows.length - 1);
+    }
+}
+
+let lastOverallLabel = "🟢 NORMAL";
+</parameter>
 
 // ---------- LIVE SENSOR DATA ----------
 // ---------- LIVE SENSOR DATA + RISK LOGIC ----------
@@ -148,7 +256,14 @@ async function updateDashboard() {
         document.getElementById("waterRisk").innerText = statuses.water;
         document.getElementById("pressureRisk").innerText = statuses.pressure;
         document.getElementById("temperatureRisk").innerText = statuses.temperature;
+        // Update charts with new readings
+        updateCharts(data);
 
+        // Add alert row if status just became WARNING or CRITICAL
+        if (overallLabel !== lastOverallLabel && overallLabel !== "🟢 NORMAL") {
+            addAlertRow("Elevated risk detected", overallLabel);
+        }
+        lastOverallLabel = overallLabel;
         // Risk message
         const riskMessage = document.getElementById("riskMessage");
         if (score >= 60) {
@@ -170,8 +285,7 @@ updateDashboard();
 // Then refresh every 3 seconds
 setInterval(updateDashboard, 3000);
 
-// Run once immediately
+// Set up charts, then start fetching data
+initCharts();
 updateDashboard();
-
-// Then refresh every 3 seconds
 setInterval(updateDashboard, 3000);
