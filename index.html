@@ -13,37 +13,34 @@
     <div class="sidebar">
 
         <h2>☁ CloudGuard</h2>
-<p class="menu active" onclick="showPage('dashboard')">
-    🏠 Dashboard
-</p>
 
-<p class="menu" onclick="showPage('nodes')">
-    📡 Nodes
-</p>
+        <p class="menu active" onclick="showPage('dashboard')">
+            🏠 Dashboard
+        </p>
 
-<p class="menu" onclick="showPage('alerts')">
-    🚨 Alerts
-</p>
+        <p class="menu" onclick="showPage('nodes')">
+            📡 Nodes
+        </p>
 
-<p class="menu" onclick="showPage('map')">
-    🗺 Live Map
-</p>
+        <p class="menu" onclick="showPage('alerts')">
+            🚨 Alerts
+        </p>
 
-<p class="menu" onclick="showPage('analytics')">
-    📊 Analytics
-</p>
+        <p class="menu" onclick="showPage('analytics')">
+            📊 Analytics
+        </p>
 
-<p class="menu" onclick="showPage('security')">
-    🔐 Security
-</p>
+        <p class="menu" onclick="showPage('security')">
+            🔐 Security
+        </p>
 
-<p class="menu" onclick="showPage('power')">
-    ⚡ Power
-</p>
+        <p class="menu" onclick="showPage('power')">
+            ⚡ Power
+        </p>
 
-<p class="menu" onclick="showPage('settings')">
-    ⚙ Settings
-</p>
+        <p class="menu" onclick="showPage('settings')">
+            ⚙ Settings
+        </p>
 
     </div>
 
@@ -68,451 +65,418 @@
         </div>
 
 
-        <!-- SUMMARY CARDS -->
+        <!-- DASHBOARD PAGE -->
 
-        <div class="cards">
+        <div id="dashboardPage" class="page-section">
 
-            <div class="card">
-                <p>Overall Risk</p>
-                <h2 id="riskScore">20 / 100</h2>
-                <span id="riskStatus">🟢 NORMAL</span>
-            </div>
+            <!-- SUMMARY CARDS -->
 
-            <div class="card">
-                <p>Active Alerts</p>
-                <h2 id="alertCount">0</h2>
-                <span>🚨 Alerts</span>
-            </div>
+            <div class="cards">
 
-            <div class="card">
-                <p>Total Nodes</p>
-                <h2>4</h2>
-                <span>Environmental Nodes</span>
-            </div>
+                <div class="card">
+                    <p>Overall Risk</p>
+                    <h2 id="riskScore">20 / 100</h2>
+                    <span id="riskStatus">🟢 NORMAL</span>
+                </div>
 
-            <div class="card">
-                <p>System Health</p>
-                <h2>94%</h2>
-                <span>🟢 Healthy</span>
-            </div>
+                <div class="card">
+                    <p>Active Alerts</p>
+                    <h2 id="alertCount">0</h2>
+                    <span>🚨 Alerts</span>
+                </div>
 
-        </div>
+                <div class="card">
+                    <p>Total Nodes</p>
+                    <h2>4</h2>
+                    <span>Environmental Nodes</span>
+                </div>
 
-
-        <!-- MAP + RISK -->
-
-        <div class="middle">
-
-            <!-- LIVE MAP -->
-
-            <div class="map">
-
-                <h2>Live Map</h2>
-
-                <div class="map-area">
-
-    <div class="node node1" onclick="showNodeInfo(1)">
-        🟢 Node 01
-    </div>
-
-    <div class="node node2" onclick="showNodeInfo(2)">
-        🟠 Node 02
-    </div>
-
-    <div class="node node3" onclick="showNodeInfo(3)">
-        🔴 Node 03
-    </div>
-
-    <div class="node node4" onclick="showNodeInfo(4)">
-        🟢 Node 04
-    </div>
-
-</div>
+                <div class="card">
+                    <p>System Health</p>
+                    <h2>94%</h2>
+                    <span>🟢 Healthy</span>
+                </div>
 
             </div>
 
 
-            <!-- RISK ANALYSIS -->
+            <!-- MAP + RISK -->
 
-            <div class="risk">
+            <div class="middle">
 
-                <h2>Risk Analysis</h2>
+                <!-- LIVE MAP -->
 
-                <h1 id="riskAnalysis">20 / 100</h1>
+                <div class="map">
 
-                <h3 id="riskDecision">🟢 NORMAL</h3>
+                    <h2>Live Map</h2>
 
-                <p id="riskMessage">
-                    No abnormal environmental pattern detected.
+                    <div class="map-area">
+
+                        <div class="node node1" onclick="showNodeInfo(1)">
+                            🟢 Node 01
+                        </div>
+
+                        <div class="node node2" onclick="showNodeInfo(2)">
+                            🟠 Node 02
+                        </div>
+
+                        <div class="node node3" onclick="showNodeInfo(3)">
+                            🔴 Node 03
+                        </div>
+
+                        <div class="node node4" onclick="showNodeInfo(4)">
+                            🟢 Node 04
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RISK ANALYSIS -->
+
+                <div class="risk">
+
+                    <h2>Risk Analysis</h2>
+
+                    <h1 id="riskAnalysis">20 / 100</h1>
+
+                    <h3 id="riskDecision">🟢 NORMAL</h3>
+
+                    <p id="riskMessage">
+                        No abnormal environmental pattern detected.
+                    </p>
+
+                    <hr>
+
+                    <p>Rain intensity: <span id="rainRisk">Normal</span></p>
+
+                    <p>Water level: <span id="waterRisk">Normal</span></p>
+
+                    <p>Pressure: <span id="pressureRisk">Normal</span></p>
+
+                    <p>Temperature: <span id="temperatureRisk">Normal</span></p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIVE SENSOR DATA -->
+
+            <h2 class="section-title">Live Sensor Data</h2>
+
+            <div class="sensor-container">
+
+                <!-- RAIN -->
+
+                <div class="sensor">
+                    <h3>🌧 Rain</h3>
+                    <h2 id="rain">12 mm</h2>
+                    <p id="rainStatus">Normal</p>
+                </div>
+
+                <!-- WATER LEVEL -->
+
+                <div class="sensor">
+                    <h3>🌊 Water Level</h3>
+                    <h2 id="waterLevel">10 cm</h2>
+                    <p id="waterStatus">Normal</p>
+                </div>
+
+                <!-- TEMPERATURE -->
+
+                <div class="sensor">
+                    <h3>🌡 Temperature</h3>
+                    <h2 id="temperature">32°C</h2>
+                    <p id="temperatureStatus">Normal</p>
+                </div>
+
+                <!-- HUMIDITY -->
+
+                <div class="sensor">
+                    <h3>💧 Humidity</h3>
+                    <h2 id="humidity">75%</h2>
+                    <p id="humidityStatus">Normal</p>
+                </div>
+
+                <!-- PRESSURE -->
+
+                <div class="sensor">
+                    <h3>🌬 Pressure</h3>
+                    <h2 id="pressure">1006 hPa</h2>
+                    <p id="pressureStatus">Normal</p>
+                </div>
+
+            </div>
+
+
+            <!-- SYSTEM STATUS -->
+
+            <h2 class="section-title">System Status</h2>
+
+            <div class="status">
+                <p>ESP32: 🟢 ONLINE</p>
+                <p>Sensors: 🟢 ACTIVE</p>
+                <p>Risk Engine: 🟢 ACTIVE</p>
+                <p>Network: 🟢 ONLINE</p>
+            </div>
+
+
+            <!-- ACTIVE ALERTS -->
+
+            <h2 class="section-title">Active Alerts</h2>
+
+            <div class="alert" id="alertBox">
+                <h3 id="alertTitle">🟢 No Critical Alerts</h3>
+                <p id="alertMessage">
+                    All environmental conditions are currently normal.
                 </p>
+            </div>
 
-                <hr>
+        </div> <!-- closes dashboardPage -->
 
-                <p>Rain intensity: <span id="rainRisk">Normal</span></p>
 
-                <p>Water level: <span id="waterRisk">Normal</span></p>
+        <!-- NODES PAGE -->
 
-                <p>Pressure: <span id="pressureRisk">Normal</span></p>
+        <div id="nodesPage" class="page-section">
 
-                <p>Temperature: <span id="temperatureRisk">Normal</span></p>
+            <h2 class="section-title">📡 Environmental Nodes</h2>
+
+            <div class="node-grid">
+
+                <div class="node-card">
+                    <h2>Node 01</h2>
+                    <p class="online-text">🟢 ONLINE</p>
+                    <hr>
+                    <p>🌡 Temperature</p>
+                    <h3 id="node1Temperature">-- °C</h3>
+                    <p>💧 Humidity</p>
+                    <h3 id="node1Humidity">-- %</h3>
+                </div>
+
+                <div class="node-card">
+                    <h2>Node 02</h2>
+                    <p class="online-text">🟢 ONLINE</p>
+                    <hr>
+                    <p>🌧 Rain</p>
+                    <h3 id="node2Rain">-- mm</h3>
+                    <p>🌊 Water Level</p>
+                    <h3 id="node2Water">-- cm</h3>
+                </div>
+
+                <div class="node-card">
+                    <h2>Node 03</h2>
+                    <p class="online-text">🟢 ONLINE</p>
+                    <hr>
+                    <p>🌬 Pressure</p>
+                    <h3 id="node3Pressure">-- hPa</h3>
+                    <p>🌡 Temperature</p>
+                    <h3 id="node3Temperature">-- °C</h3>
+                </div>
+
+                <div class="node-card">
+                    <h2>Node 04</h2>
+                    <p class="online-text">🟢 ONLINE</p>
+                    <hr>
+                    <p>📡 Connectivity</p>
+                    <h3>Excellent</h3>
+                    <p>🔋 Battery</p>
+                    <h3>94%</h3>
+                </div>
 
             </div>
 
-        </div>
+        </div> <!-- closes nodesPage -->
 
 
-        <!-- LIVE SENSOR DATA -->
+        <!-- ALERTS PAGE -->
 
-        <h2 class="section-title">Live Sensor Data</h2>
+        <div id="alertsPage" class="page-section">
 
-        <div class="sensor-container">
+            <h2 class="section-title">🚨 Alert History</h2>
 
-            <!-- RAIN -->
+            <div class="history">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Alert</th>
+                            <th>Risk</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alertHistory">
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="sensor">
+        </div> <!-- closes alertsPage -->
 
-                <h3>🌧 Rain</h3>
 
-                <h2 id="rain">12 mm</h2>
+        <!-- ANALYTICS PAGE -->
 
-                <p id="rainStatus">Normal</p>
+        <div id="analyticsPage" class="page-section">
+
+            <h2 class="section-title">📊 Sensor Analytics</h2>
+
+            <div class="chart-box">
+                <h3>🌡 Temperature History</h3>
+                <canvas id="temperatureChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h3>💧 Humidity History</h3>
+                <canvas id="humidityChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h3>🌧 Rain History</h3>
+                <canvas id="rainChart"></canvas>
+            </div>
+
+        </div> <!-- closes analyticsPage -->
+
+
+        <!-- SECURITY PAGE -->
+
+        <div id="securityPage" class="page-section">
+
+            <h2 class="section-title">🔐 Security Status</h2>
+
+            <div class="security-grid">
+
+                <div class="security-card">
+                    <h3>🔐 System Security</h3>
+                    <h2>🟢 SECURE</h2>
+                    <p>No security issues detected.</p>
+                </div>
+
+                <div class="security-card">
+                    <h3>📡 Network</h3>
+                    <h2>🟢 SECURE</h2>
+                    <p>Network connection is active.</p>
+                </div>
+
+                <div class="security-card">
+                    <h3>📡 Node Authentication</h3>
+                    <h2>🟢 VERIFIED</h2>
+                    <p>All connected nodes are verified.</p>
+                </div>
+
+                <div class="security-card">
+                    <h3>🛡 Risk Engine</h3>
+                    <h2>🟢 ACTIVE</h2>
+                    <p>Environmental monitoring is running.</p>
+                </div>
 
             </div>
 
-
-            <!-- WATER LEVEL -->
-
-            <div class="sensor">
-
-                <h3>🌊 Water Level</h3>
-
-                <h2 id="waterLevel">10 cm</h2>
-
-                <p id="waterStatus">Normal</p>
-
-            </div>
+        </div> <!-- closes securityPage -->
 
 
-            <!-- TEMPERATURE -->
+        <!-- POWER PAGE -->
 
-            <div class="sensor">
+        <div id="powerPage" class="page-section">
 
-                <h3>🌡 Temperature</h3>
+            <h2 class="section-title">⚡ Power Monitoring</h2>
 
-                <h2 id="temperature">32°C</h2>
+            <div class="power-grid">
 
-                <p id="temperatureStatus">Normal</p>
+                <div class="power-card">
+                    <h3>🔋 Node 01 Battery</h3>
+                    <h2 id="battery1">92%</h2>
+                    <p>🟢 Healthy</p>
+                </div>
 
-            </div>
+                <div class="power-card">
+                    <h3>🔋 Node 02 Battery</h3>
+                    <h2 id="battery2">87%</h2>
+                    <p>🟢 Healthy</p>
+                </div>
 
+                <div class="power-card">
+                    <h3>🔋 Node 03 Battery</h3>
+                    <h2 id="battery3">78%</h2>
+                    <p>🟢 Healthy</p>
+                </div>
 
-            <!-- HUMIDITY -->
-
-            <div class="sensor">
-
-                <h3>💧 Humidity</h3>
-
-                <h2 id="humidity">75%</h2>
-
-                <p id="humidityStatus">Normal</p>
+                <div class="power-card">
+                    <h3>🔋 Node 04 Battery</h3>
+                    <h2 id="battery4">94%</h2>
+                    <p>🟢 Healthy</p>
+                </div>
 
             </div>
 
+        </div> <!-- closes powerPage -->
 
-            <!-- PRESSURE -->
 
-            <div class="sensor">
+        <!-- SETTINGS PAGE -->
 
-                <h3>🌬 Pressure</h3>
+        <div id="settingsPage" class="page-section">
 
-                <h2 id="pressure">1006 hPa</h2>
+            <h2 class="section-title">⚙ System Settings</h2>
 
-                <p id="pressureStatus">Normal</p>
+            <div class="settings-box">
+
+                <h3>⚙ Dashboard Settings</h3>
+
+                <div class="setting-row">
+                    <span>Live Sensor Updates</span>
+                    <button onclick="toggleSetting(this)">ON</button>
+                </div>
+
+                <div class="setting-row">
+                    <span>Risk Monitoring</span>
+                    <button onclick="toggleSetting(this)">ON</button>
+                </div>
+
+                <div class="setting-row">
+                    <span>Alert Notifications</span>
+                    <button onclick="toggleSetting(this)">ON</button>
+                </div>
+
+                <div class="setting-row">
+                    <span>Automatic Refresh</span>
+                    <button onclick="toggleSetting(this)">ON</button>
+                </div>
 
             </div>
 
-        </div>
+        </div> <!-- closes settingsPage -->
 
-<!-- POWER -->
+    </div> <!-- closes main -->
 
-<div id="powerPage" class="page-section">
 
-    <h2 class="section-title">⚡ Power Monitoring</h2>
+    <!-- NODE POPUP -->
 
-    <div class="power-grid">
+    <div id="nodePopup" class="node-popup">
 
-        <div class="power-card">
-            <h3>🔋 Node 01 Battery</h3>
-            <h2 id="battery1">92%</h2>
-            <p>🟢 Healthy</p>
-        </div>
+        <div class="popup-content">
 
-        <div class="power-card">
-            <h3>🔋 Node 02 Battery</h3>
-            <h2 id="battery2">87%</h2>
-            <p>🟢 Healthy</p>
-        </div>
+            <span class="close" onclick="closeNodeInfo()">×</span>
 
-        <div class="power-card">
-            <h3>🔋 Node 03 Battery</h3>
-            <h2 id="battery3">78%</h2>
-            <p>🟢 Healthy</p>
-        </div>
+            <h2 id="popupTitle">Node Information</h2>
 
-        <div class="power-card">
-            <h3>🔋 Node 04 Battery</h3>
-            <h2 id="battery4">94%</h2>
-            <p>🟢 Healthy</p>
-        </div>
-
-    </div>
-
-</div>
-<!-- SETTINGS -->
-
-<div id="settingsPage" class="page-section">
-
-    <h2 class="section-title">⚙ System Settings</h2>
-
-    <div class="settings-box">
-
-        <h3>⚙ Dashboard Settings</h3>
-
-        <div class="setting-row">
-            <span>Live Sensor Updates</span>
-            <button onclick="toggleSetting(this)">ON</button>
-        </div>
-
-        <div class="setting-row">
-            <span>Risk Monitoring</span>
-            <button onclick="toggleSetting(this)">ON</button>
-        </div>
-
-        <div class="setting-row">
-            <span>Alert Notifications</span>
-            <button onclick="toggleSetting(this)">ON</button>
-        </div>
-
-        <div class="setting-row">
-            <span>Automatic Refresh</span>
-            <button onclick="toggleSetting(this)">ON</button>
-        </div>
-
-    </div>
-
-</div>
-        <!-- SYSTEM STATUS -->
-<!-- SECURITY -->
-
-<div id="securityPage" class="page-section">
-
-    <h2 class="section-title">🔐 Security Status</h2>
-
-    <div class="security-grid">
-
-        <div class="security-card">
-            <h3>🔐 System Security</h3>
-            <h2>🟢 SECURE</h2>
-            <p>No security issues detected.</p>
-        </div>
-
-        <div class="security-card">
-            <h3>📡 Network</h3>
-            <h2>🟢 SECURE</h2>
-            <p>Network connection is active.</p>
-        </div>
-
-        <div class="security-card">
-            <h3>📡 Node Authentication</h3>
-            <h2>🟢 VERIFIED</h2>
-            <p>All connected nodes are verified.</p>
-        </div>
-
-        <div class="security-card">
-            <h3>🛡 Risk Engine</h3>
-            <h2>🟢 ACTIVE</h2>
-            <p>Environmental monitoring is running.</p>
-        </div>
-
-    </div>
-
-</div>
-        <h2 class="section-title">System Status</h2>
-
-        <div class="status">
-
-            <p>ESP32: 🟢 ONLINE</p>
-
-            <p>Sensors: 🟢 ACTIVE</p>
-
-            <p>Risk Engine: 🟢 ACTIVE</p>
-
-            <p>Network: 🟢 ONLINE</p>
-
-        </div>
-
-<!-- SENSOR GRAPH -->
-
-<h2 id="analyticsPage" class="section-title">📊 Sensor Analytics</h2>
-
-<div class="chart-box">
-    <h3>🌡 Temperature History</h3>
-    <canvas id="temperatureChart"></canvas>
-</div>
-
-<div class="chart-box">
-    <h3>💧 Humidity History</h3>
-    <canvas id="humidityChart"></canvas>
-</div>
-
-<div class="chart-box">
-    <h3>🌧 Rain History</h3>
-    <canvas id="rainChart"></canvas>
-</div>
-<!-- ALERT HISTORY -->
-
-<h2 id="alertsPage" class="section-title">🚨 Alert History</h2>
-
-<div class="history">
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Alert</th>
-                <th>Risk</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-
-    <tbody id="alertHistory">
-</tbody>
-
-    </table>
-
-</div>
-<!-- NODES PAGE -->
-
-<div id="nodesPage" class="page-section">
-
-    <h2 class="section-title">📡 Environmental Nodes</h2>
-
-    <div class="node-grid">
-
-        <div class="node-card">
-            <h2>Node 01</h2>
-            <p class="online-text">🟢 ONLINE</p>
+            <p id="popupStatus">🟢 ONLINE</p>
 
             <hr>
 
-            <p>🌡 Temperature</p>
-            <h3 id="node1Temperature">-- °C</h3>
-
-            <p>💧 Humidity</p>
-            <h3 id="node1Humidity">-- %</h3>
-        </div>
-
-
-        <div class="node-card">
-            <h2>Node 02</h2>
-            <p class="online-text">🟢 ONLINE</p>
-
-            <hr>
-
-            <p>🌧 Rain</p>
-            <h3 id="node2Rain">-- mm</h3>
-
-            <p>🌊 Water Level</p>
-            <h3 id="node2Water">-- cm</h3>
-        </div>
-
-
-        <div class="node-card">
-            <h2>Node 03</h2>
-            <p class="online-text">🟢 ONLINE</p>
-
-            <hr>
-
-            <p>🌬 Pressure</p>
-            <h3 id="node3Pressure">-- hPa</h3>
-
-            <p>🌡 Temperature</p>
-            <h3 id="node3Temperature">-- °C</h3>
-        </div>
-
-
-        <div class="node-card">
-            <h2>Node 04</h2>
-            <p class="online-text">🟢 ONLINE</p>
-
-            <hr>
-
-            <p>📡 Connectivity</p>
-            <h3>Excellent</h3>
-
-            <p>🔋 Battery</p>
-            <h3>94%</h3>
-        </div>
-
-    </div>
-
-</div>
-        <!-- ACTIVE ALERTS -->
-
-        <h2 class="section-title">Active Alerts</h2>
-
-        <div class="alert" id="alertBox">
-
-            <h3 id="alertTitle">🟢 No Critical Alerts</h3>
-
-            <p id="alertMessage">
-                All environmental conditions are currently normal.
-            </p>
+            <p>🌡 Temperature: <strong id="popupTemperature">--</strong></p>
+            <p>💧 Humidity: <strong id="popupHumidity">--</strong></p>
+            <p>🌧 Rain: <strong id="popupRain">--</strong></p>
+            <p>🌊 Water Level: <strong id="popupWater">--</strong></p>
+            <p>🌬 Pressure: <strong id="popupPressure">--</strong></p>
 
         </div>
 
     </div>
-<div id="nodePopup" class="node-popup">
-
-    <div class="popup-content">
-
-        <span class="close" onclick="closeNodeInfo()">×</span>
-
-        <h2 id="popupTitle">Node Information</h2>
-
-        <p id="popupStatus">🟢 ONLINE</p>
-
-        <hr>
-
-        <p>🌡 Temperature:
-            <strong id="popupTemperature">--</strong>
-        </p>
-
-        <p>💧 Humidity:
-            <strong id="popupHumidity">--</strong>
-        </p>
-
-        <p>🌧 Rain:
-            <strong id="popupRain">--</strong>
-        </p>
-
-        <p>🌊 Water Level:
-            <strong id="popupWater">--</strong>
-        </p>
-
-        <p>🌬 Pressure:
-            <strong id="popupPressure">--</strong>
-        </p>
-
-    </div>
-
-</div>
 
     <!-- JAVASCRIPT -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 

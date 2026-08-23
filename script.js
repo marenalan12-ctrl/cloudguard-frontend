@@ -1,3 +1,59 @@
+// ---------- PAGE SWITCHING ----------
+
+function showPage(pageName) {
+    document.querySelectorAll(".page-section").forEach(section => {
+        section.style.display = "none";
+    });
+
+    const target = document.getElementById(pageName + "Page");
+    if (target) {
+        target.style.display = "block";
+    }
+
+    document.querySelectorAll(".menu").forEach(item => {
+        item.classList.remove("active");
+    });
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add("active");
+    }
+}
+
+
+// ---------- NODE POPUP ----------
+
+function showNodeInfo(nodeNum) {
+    document.getElementById("popupTitle").innerText = "Node 0" + nodeNum;
+    document.getElementById("popupTemperature").innerText = document.getElementById("temperature").innerText;
+    document.getElementById("popupHumidity").innerText = document.getElementById("humidity").innerText;
+    document.getElementById("popupRain").innerText = document.getElementById("rain").innerText;
+    document.getElementById("popupWater").innerText = document.getElementById("waterLevel").innerText;
+    document.getElementById("popupPressure").innerText = document.getElementById("pressure").innerText;
+
+    document.getElementById("nodePopup").style.display = "flex";
+}
+
+function closeNodeInfo() {
+    document.getElementById("nodePopup").style.display = "none";
+}
+
+
+// ---------- SETTINGS TOGGLE ----------
+
+function toggleSetting(button) {
+    if (button.innerText === "ON") {
+        button.innerText = "OFF";
+        button.style.backgroundColor = "#e5e7eb";
+        button.style.color = "#374151";
+    } else {
+        button.innerText = "ON";
+        button.style.backgroundColor = "#2563eb";
+        button.style.color = "white";
+    }
+}
+
+
+// ---------- LIVE SENSOR DATA ----------
+
 async function updateDashboard() {
     try {
         const response = await fetch("https://cloudguard-backend-sgym.onrender.com/api/sensors");

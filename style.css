@@ -119,6 +119,7 @@ body {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    cursor: pointer;
 }
 
 .node1 {
@@ -168,6 +169,7 @@ body {
     padding: 20px;
     border-radius: 12px;
 }
+
 .chart-box {
     background-color: white;
     padding: 20px;
@@ -175,6 +177,7 @@ body {
     margin-top: 20px;
     height: 350px;
 }
+
 .history {
     background-color: white;
     padding: 20px;
@@ -193,11 +196,10 @@ body {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #eeeeee;
-}/* NODE PAGE */
-
-.page-section {
-    margin-top: 30px;
 }
+
+
+/* NODE PAGE */
 
 .node-grid {
     display: grid;
@@ -231,7 +233,10 @@ body {
     border: none;
     border-top: 1px solid #eeeeee;
     margin: 15px 0;
-}/* NODE POPUP */
+}
+
+
+/* NODE POPUP */
 
 .node-popup {
     display: none;
@@ -267,7 +272,10 @@ body {
 
 .close:hover {
     color: red;
-}/* SECURITY */
+}
+
+
+/* SECURITY */
 
 .security-grid {
     display: grid;
@@ -289,10 +297,12 @@ body {
 
 .security-card p {
     margin-bottom: 0;
-}/* POWER */
+}
+
+
+/* POWER */
 
 .power-grid {
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
@@ -311,6 +321,8 @@ body {
     font-size: 30px;
     margin: 15px 0;
 }
+
+
 /* SETTINGS */
 
 .settings-box {
@@ -340,4 +352,17 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
+    background-color: #2563eb;
+    color: white;
+}
+
+
+/* PAGE SWITCHING */
+
+.page-section {
+    display: none;
+}
+
+#dashboardPage {
+    display: block;
 }
