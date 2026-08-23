@@ -158,7 +158,7 @@ function addAlertRow(alertText, riskLabel) {
 }
 
 let lastOverallLabel = "🟢 NORMAL";
-</parameter>
+
 
 // ---------- LIVE SENSOR DATA ----------
 // ---------- LIVE SENSOR DATA + RISK LOGIC ----------
