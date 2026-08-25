@@ -173,8 +173,16 @@ async function updateDashboard() {
         document.getElementById("humidity").innerText = data.humidity + "%";
         document.getElementById("rain").innerText = data.rain + " mm";
         document.getElementById("waterLevel").innerText = data.waterLevel + " cm";
-        document.getElementById("pressure").innerText = data.pressure + " hPa";
+                document.getElementById("pressure").innerText = data.pressure + " hPa";
 
+        // New sensor cards
+        document.getElementById("pm25").innerText = data.pm25 + " µg/m³";
+        document.getElementById("pm10").innerText = data.pm10 + " µg/m³";
+        document.getElementById("mq2").innerText = data.mq2;
+        document.getElementById("mq135").innerText = data.mq135;
+        document.getElementById("soilMoisture").innerText = data.soilMoisture + "%";
+        document.getElementById("vibration").innerText = data.vibration;
+        document.getElementById("tilt").innerText = "X:" + data.tiltX + " Y:" + data.tiltY + " Z:" + data.tiltZ;
         // Node cards (using the same shared data for now)
         document.getElementById("node1Temperature").innerText = data.temperature + " °C";
         document.getElementById("node1Humidity").innerText = data.humidity + " %";

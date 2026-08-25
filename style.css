@@ -151,10 +151,9 @@ body {
 
 .sensor-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
 }
-
 .sensor {
     background-color: white;
     padding: 18px;
